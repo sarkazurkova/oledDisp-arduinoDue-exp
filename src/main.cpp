@@ -18,7 +18,7 @@ String chooseRandomWord() {
 }
 
 void loadingScreen(){
-  /*Displays moving loading text*/
+  /*Displays moving text LOADING...*/
   int j = 0;
   for(int i = 10; i < 70; i+=10){
     u8g2.clearBuffer();
@@ -32,25 +32,27 @@ void loadingScreen(){
 }
 
 void helloScreen(){
-  /*Displays hello on the display*/
+  /*Displays Hello, world! on the display*/
   u8g2.clearBuffer();
   u8g2.setFont(u8g2_font_ncenB08_tr);
-  u8g2.drawStr(40,40,"Hello.");
+  u8g2.drawStr(35,40,"Hello, world!");
   u8g2.sendBuffer();
   delay(3000);
 }
 
 void displayRandomWord(){
+  /*Chooses from array 'words[]' a random word and displays it on display*/
   String rWord = chooseRandomWord();
   u8g2.clearBuffer();
   u8g2.setFont(u8g2_font_ncenB08_tr);
   u8g2.drawStr(45,40,rWord.c_str());
-  Serial.println(rWord);
+  Serial.println(rWord); //print to console the selected word
   u8g2.sendBuffer();
   delay(3000);
 }
-
+ 
 void loop(void) {
+  /*Main*/
   Serial.print("loading... ");
   loadingScreen();  
   displayRandomWord();
